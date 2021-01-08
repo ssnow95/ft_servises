@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ftps
+  labels:
+    app: ftps
+  annotations:
+    metallb.universe.tf/allow-shared-ip: metallb-system
+spec:
+  externalTrafficPolicy: Cluster
+  type: LoadBalancer
+  selector:
+    app: ftps
+  ports:
+  - name: ftp-connection
+    port: 21
+  - name: pftp-data
+    port: 1025
